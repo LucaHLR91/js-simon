@@ -15,4 +15,35 @@ for( var i = 0; i < 5; i++) {
 }
 
 console.log(rndNumbers);
+
+// CREO UN ALERT CON I NUMERI RANDOM E FACCIO PARTIRE IL TIMER DI 30 SECONDI E POI CHIEDO ALL'UTENTE DI INSERIRIRE IN NUMERI VISTI NELLO STESSO ORDINE
 alert(rndNumbers);
+// PARTE IL TIMER
+let seconds = 30;
+let idInterval = setInterval(timer, 1000);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// FUNZIONI
+function timer() {
+    console.log(seconds);
+    if(seconds == 0) {
+        clearInterval(idInterval);
+    }
+    seconds--;
+} 
+
