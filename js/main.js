@@ -5,45 +5,46 @@
 // Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
 
 //GENERARE ARRAY DI 5 NUMERI CASUALI
-var rndNumbers = [];
-let max = 100;
-let min = 1;
+const numeriDaIndovinare = 5;
+const minNumRandom = 1;
+const maxNumRandom = 100;
 
-for( var i = 0; i < 5; i++) {
-    var number = Math.floor(Math.random() * (max - min) + min);
-    rndNumbers.push(number);
+let rndNumbers = [];
+
+while (rndNumbers.length < numeriDaIndovinare) {
+    let newRandomNumber = getRndNumber(minNumRandom, maxNumRandom);
+    if (!rndNumbers.includes(newRandomNumber)) {
+        rndNumbers.push(newRandomNumber);
+    }
+    
 }
-
 console.log(rndNumbers);
-
-// CREO UN ALERT CON I NUMERI RANDOM E FACCIO PARTIRE IL TIMER DI 30 SECONDI E POI CHIEDO ALL'UTENTE DI INSERIRIRE IN NUMERI VISTI NELLO STESSO ORDINE
 alert(rndNumbers);
-// PARTE IL TIMER
-let seconds = 30;
-let idInterval = setInterval(timer, 1000);
 
 
+setTimeout(function() {
+    let userNumbers = [];
+    while (userNumbers.length < numeriDaIndovinare) {
+        // RICHIEDERE I 5 NUMERI ALL'UTENTE
+        let newUserNumber = parseInt(prompt('inserisci un numero'));
+        if (userNumbers.includes(newUserNumber) == false); {
+            userNumbers.push(newUserNumber);
+        }
+    }
+    // VERIFICA DEI NUMERI INDOVINATI
+    let indovinati = [];
+    for(let i = 0; i < userNumbers.length; i++) {
+        let userNumber = userNumbers[i];
+        if (rndNumbers.includes(userNumber)) {
+            indovinati.push(userNumber);
+        }
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    alert('Hai indovinatio' + '' + indovinati.length + 'numeri');
+    alert('I numeri sono' + indovinati);
+}, 3000)
 
 // FUNZIONI
-function timer() {
-    console.log(seconds);
-    if(seconds == 0) {
-        clearInterval(idInterval);
-    }
-    seconds--;
-} 
-
+function getRndNumber(min, max) {
+    return Math.floor(Math.random() * (max-min + 1) + min);
+}
